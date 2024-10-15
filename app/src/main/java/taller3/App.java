@@ -6,7 +6,31 @@ package taller3;
 public class App {
 
    public static void main(String[] args) {
-   
+        System.out.println(Escribir_asc(4, 3, 2));
+      System.out.println(Escribir_asc(3, 5, 2));
+      System.out.println(Escribir_asc(2, 3, 3));
+      System.out.println(Obtener_cifras(10));
+      System.out.println(Obtener_cifras(9999));
+      System.out.println(Obtener_cifras(-1));
+      System.out.println(Obtener_cifras(50001));
+      System.out.println(Hallar_division_exacta(10, 5));
+      System.out.println(Hallar_division_exacta(10, 3));
+      System.out.println(Hallar_division_exacta(-10, 5));
+      System.out.println(Hallar_division_exacta(10, 0));
+      System.out.println(Obtener_obs(true, false, false));
+      System.out.println(Obtener_obs(true, true, false));
+      System.out.println(Obtener_obs(true, true, true));
+      System.out.println(Obtener_obs(false, false, false));
+      System.out.println(Conocer_invitacion("verde"));
+      System.out.println(Conocer_invitacion("azul"));
+      System.out.println(Conocer_invitacion("rojo"));
+      System.out.println(Conocer_invitacion("amarillo"));
+      System.out.println(Conocer_invitacion("negro"));
+      System.out.println(Conocer_invitacion("morado"));
+      System.out.println(Clasificar_char('a'));
+      System.out.println(Clasificar_char('Z'));
+      System.out.println(Clasificar_char('1'));
+      System.out.println(Clasificar_char('@'));
 
    }
 
@@ -21,7 +45,23 @@ public class App {
     * hay un error inesperado, deberá mostrar
     * el mensaje: "Ocurrió un error inesperado".
     */
-
+     public static String Escribir_asc(int num1, int num2, int num3) {
+      try {
+          String resultado;
+          if (num1 == num2 || num2 == num3 || num1 == num3) {
+              return "Error: La función no considera números iguales";
+          }
+          int mayor = Math.max(num1, Math.max(num2, num3));
+          int menor = Math.min(num1, Math.min(num2, num3));
+          int medio = num1 + num2 + num3 - mayor - menor;
+   
+          resultado = mayor + " - " + medio + " - " + menor;
+          
+          return resultado;
+      } catch (Exception e) {
+          return "Ocurrió un error inesperado";
+      }
+  }
 
 
    /*
@@ -32,6 +72,32 @@ public class App {
     * no está en el rango devuelve 0. Y si hay un error inesperado, devuelve -1.
     * 
     */
+   public static byte Obtener_cifras(int numero){
+      try {
+         byte cifras = 0;
+
+       if (numero < 0 || numero > 50000) {
+            return 0;
+        }
+      if (numero < 10) {
+         cifras = 1;
+     } else if (numero < 100) {
+         cifras = 2;
+     } else if (numero < 1000) {
+         cifras = 3;
+     } else if (numero < 10000) {
+         cifras = 4;
+     } else if (numero <= 50000) {
+         cifras = 5;
+     }
+
+     return cifras;
+
+      } catch (Exception e) {
+         return -1;
+      }
+   }
+
 
 
 
@@ -48,7 +114,24 @@ public class App {
     * "Ocurrió un error inesperado".
     * 
     */
+public static String Clasificar_char(char caracter){
+      try {
+            String resultado;
 
+            if ((caracter >= 'a' && caracter <= 'z') || (caracter >= 'A' && caracter <= 'Z')) {
+                resultado = "ES LETRA";
+            } else if (caracter >= '0' && caracter <= '@') {
+                resultado = "ES NUMERO";
+            } else {
+                resultado = "ESPECIAL";
+            }
+
+            return resultado;
+         
+      } catch (Exception e) {
+         return "ocurrio un error inesperado";
+       }
+   }
 
 
    /*
@@ -69,7 +152,26 @@ public class App {
     * 
     * 
     */
-
+   public static String Hallar_division_exacta(int num1, int num2) {
+        try {
+            int residuo = num1 % num2;
+            String resultado;
+    
+            if (num1 <= 0 || num2 <= 0) {
+                return "NO SE ADMITE CERO O NEGATIVOS";
+            }
+    
+            if (residuo == 0) {
+                resultado = "DIVISION EXACTA";
+            } else {
+                resultado = "DIVISION NO EXACTA";
+            }
+    
+            return resultado;
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+    }
    
 
    /*
@@ -113,7 +215,25 @@ public class App {
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
     */
-
+public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3) {
+        try {
+            if (plato1 == false && plato2 == false && plato3 == false) {
+                return "PLATOS NO VÁLIDOS";
+            }
+            
+            if (plato1 && plato2 && plato3) {
+                return "BEBIDA Y POSTRE";
+            } else if (plato1 && plato2) {
+                return "BEBIDA";
+            } else if (plato1) {
+                return "POSTRE";
+            }
+           
+            return "SIN OBSEQUIO";
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+    }
 
 
 
@@ -141,4 +261,27 @@ public class App {
     * "Ocurrió un error inesperado".
     * 
     */
+   public static String Conocer_invitacion(String color) {
+        try {
+            switch (color) {
+                case "verde":
+                    return "Invita a las cervezas";
+                case "azul":
+                    return "Invita a la pizza";
+                case "rojo":
+                    return "Invita al postre";
+                case "amarillo":
+                    return "Paga el parqueadero de todos";
+                case "blanco":
+                case "negro":
+                    return "Vaya y disfrute";
+                default:
+                    return "Error en el color";
+            }
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+
+}
+}
 
